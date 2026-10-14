@@ -1,563 +1,734 @@
-import { Exercise, MuscleGroup } from '../types';
+import { Exercise } from '../types';
 
 export const EXERCISE_DATABASE: Exercise[] = [
-  // CHEST
+  // ACCESSIBLE & ELDERLY LOW-IMPACT ESSENTIALS (FEATURED FIRST)
   {
-    id: 'bench-press-barbell',
-    name: 'Barbell Bench Press',
-    category: 'chest',
-    equipment: 'barbell',
-    targetMuscles: ['Pectoralis Major', 'Anterior Deltoid', 'Triceps'],
-    secondaryMuscles: ['Core', 'Lats'],
+    id: 'chair-sit-to-stand',
+    name: 'Chair Sit-to-Stand (Assisted Squat)',
+    category: 'Legs',
+    equipment: 'Household / None',
+    targetMuscles: ['Quadriceps', 'Glutes'],
+    secondaryMuscles: ['Hamstrings', 'Core Balance'],
     instructions: [
-      'Lie flat on the bench with eyes directly under the racked bar.',
-      'Grip the bar slightly wider than shoulder-width with wrapped thumbs.',
-      'Retract your scapula, plant feet firmly into the floor, and unrack.',
-      'Lower the bar with control to your lower sternum.',
-      'Drive your feet into the floor and press upward powerfully to full lockout.'
+      'Sit tall on a sturdy dining chair with feet flat and shoulder-width apart.',
+      'Cross arms across your chest or lightly hold chair armrests for support.',
+      'Lean your torso slightly forward and push through your feet to stand tall.',
+      'Pause for 1 second, then slowly lower your hips back onto the chair with control.'
     ],
-    tips: 'Keep your elbows tucked at roughly 45–60 degrees, not flared out at 90 degrees.',
-    defaultSets: 4,
+    tips: [
+      'Avoid slamming down into the chair; practice sitting as gently as possible.',
+      'Keep knees in line with toes.'
+    ],
+    defaultReps: 10,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 60,
+    diagramType: 'chair',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Leg Kicks / Knee Extensions',
+      householdItem: 'Sturdy Living Room Chair',
+      instructions: [
+        'Remain fully seated with back resting comfortably against the chair.',
+        'Straighten one knee out in front of you until leg is parallel to floor.',
+        'Hold the squeeze for 2 seconds, then slowly lower foot to floor.',
+        'Switch to the other leg. Zero standing or balance required.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Completely seated quadriceps strengthener with zero knee or hip joint impact.'
+    }
+  },
+  {
+    id: 'wall-push-ups',
+    name: 'Wall Push-Ups (Joint-Friendly Push)',
+    category: 'Chest',
+    equipment: 'Household / None',
+    targetMuscles: ['Pectoralis Major', 'Anterior Deltoids'],
+    secondaryMuscles: ['Triceps', 'Core Stability'],
+    instructions: [
+      'Stand facing a flat wall about an arm-length away.',
+      'Place palms flat against the wall at shoulder height and width.',
+      'Slowly bend your elbows to bring your face and chest towards the wall.',
+      'Press firmly through your palms to return to full arm extension.'
+    ],
+    tips: [
+      'Step closer to the wall for an easier effort; step further back to increase challenge.',
+      'Keeps all floor strain away from wrists and lower back.'
+    ],
+    defaultReps: 12,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 45,
+    diagramType: 'wall',
+    isSeatedFriendly: false,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Chest Squeeze & Wall Push-Away',
+      householdItem: 'Wall or Small Pillow / Cushion',
+      instructions: [
+        'Sit tall in a chair or wheelchair facing a wall or holding a firm pillow.',
+        'Press palms together tightly in front of your chest (or press hands against the wall).',
+        'Hold maximum muscular chest squeeze for 5 seconds, then relax.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Isometric pectoral contraction with zero floor bending, wrist flexion, or fall risk.'
+    }
+  },
+  {
+    id: 'seated-overhead-press',
+    name: 'Seated Arm & Shoulder Press',
+    category: 'Shoulders',
+    equipment: 'Household / None',
+    targetMuscles: ['Deltoids (Shoulders)'],
+    secondaryMuscles: ['Triceps', 'Upper Back'],
+    instructions: [
+      'Sit comfortably upright in a chair with back supported.',
+      'Hold two water bottles, soup cans, or light dumbbells at ear height.',
+      'Press arms smoothly overhead until elbows are softly extended.',
+      'Slowly lower weights back to ear level.'
+    ],
+    tips: [
+      'If you have limited shoulder mobility, press forward at a 45-degree angle instead of straight up.',
+      'Keep your neck and jaw relaxed.'
+    ],
+    defaultReps: 10,
+    defaultSets: 3,
+    defaultWeightKg: 2,
+    defaultRestSec: 60,
+    diagramType: 'press',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Ceiling Reaches',
+      householdItem: 'None (Bodyweight only)',
+      instructions: [
+        'Sit tall in chair or wheelchair.',
+        'Reach one hand overhead reaching for the ceiling, stretching the side of the body.',
+        'Lower hand gently and alternate with opposite arm.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Gentle shoulder mobility and postural decompression with zero external load.'
+    }
+  },
+  {
+    id: 'seated-row',
+    name: 'Seated Resistance Towel Row',
+    category: 'Back',
+    equipment: 'Household / None',
+    targetMuscles: ['Rhomboids', 'Latissimus Dorsi'],
+    secondaryMuscles: ['Biceps', 'Posterior Deltoids'],
+    instructions: [
+      'Sit tall on a chair. Loop a long bath towel or resistance band around the balls of your feet.',
+      'Grip both towel ends with palms facing each other.',
+      'Pull towel ends towards your ribs, squeezing shoulder blades together firmly.',
+      'Pause for 2 seconds, then slowly release with control.'
+    ],
+    tips: [
+      'Sitting tall without slouching gently activates postural spine muscles.',
+      'Drive with the elbows rather than yanking with hands.'
+    ],
+    defaultReps: 12,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 45,
+    diagramType: 'pull',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Doorframe Row or Scapular Squeeze',
+      householdItem: 'Doorframe or Living Room Chair',
+      instructions: [
+        'Sit upright with arms bent at 90 degrees at your sides like goal posts.',
+        'Pinch your shoulder blades together as if holding a pencil between them.',
+        'Hold the contraction for 3 seconds, then release.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Upper back posture correction and rhomboid engagement without any equipment.'
+    }
+  },
+  {
+    id: 'countertop-calf-raise',
+    name: 'Countertop Supported Heel Raise',
+    category: 'Legs',
+    equipment: 'Household / None',
+    targetMuscles: ['Gastrocnemius', 'Soleus (Calves)'],
+    secondaryMuscles: ['Ankle Stabilizers', 'Foot Arches'],
+    instructions: [
+      'Stand tall facing a sturdy kitchen countertop or table with both hands resting lightly on the surface for balance.',
+      'Slowly rise up onto the balls of both feet as high as comfortable.',
+      'Hold for 1 second at the peak.',
+      'Lower your heels back to the floor with slow control.'
+    ],
+    tips: [
+      'The countertop provides 100% balance security to eliminate any fall risk.',
+      'Crucial for walking stability and fall prevention.'
+    ],
+    defaultReps: 15,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 45,
+    diagramType: 'chair',
+    isSeatedFriendly: false,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Toe & Heel Taps',
+      householdItem: 'Sturdy Chair',
+      instructions: [
+        'Sit with feet flat on the floor.',
+        'Lift heels as high as possible while keeping toes planted, then drop heels.',
+        'Immediately lift toes as high as possible while keeping heels planted.',
+        'Alternate rhythmically.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Circulation booster and lower leg strengthening with zero standing requirement.'
+    }
+  },
+  {
+    id: 'lying-glute-bridge',
+    name: 'Bed or Mat Gentle Glute Bridge',
+    category: 'Legs',
+    equipment: 'Household / None',
+    targetMuscles: ['Glutes', 'Hamstrings'],
+    secondaryMuscles: ['Lower Back', 'Pelvic Floor'],
+    instructions: [
+      'Lie comfortably on your back on a firm bed or yoga mat with knees bent and feet flat.',
+      'Rest arms flat by your sides.',
+      'Press through heels to lift hips 2–4 inches off the mattress/mat.',
+      'Squeeze glutes at the top for 2 seconds, then slowly lower hips back down.'
+    ],
+    tips: [
+      'Can be performed comfortably in bed before getting up in the morning.',
+      'Strengthens the glutes and lower back without compressing the spine.'
+    ],
+    defaultReps: 10,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 60,
+    diagramType: 'bridge',
+    isSeatedFriendly: false,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Glute Clenches (Isometric)',
+      householdItem: 'Chair or Bed',
+      instructions: [
+        'Sit upright in your chair.',
+        'Squeeze both buttock cheeks together as hard as comfortable.',
+        'Hold the clench for 5 seconds, breathe calmly, then relax for 5 seconds.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Non-moving glute muscle activation suitable for wheelchair users or bed rest.'
+    }
+  },
+  {
+    id: 'seated-torso-twist',
+    name: 'Seated Torso Twist (Spinal Mobility)',
+    category: 'Core',
+    equipment: 'Household / None',
+    targetMuscles: ['Obliques', 'Spinal Rotators'],
+    secondaryMuscles: ['Transverse Abdominis'],
+    instructions: [
+      'Sit tall with feet flat on floor and hands lightly placed across your chest.',
+      'Gently turn your torso to the right as far as comfortable, keeping hips stationary.',
+      'Pause for 2 seconds, return to center, then turn smoothly to the left.',
+      'Maintain an upright posture throughout.'
+    ],
+    tips: [
+      'Gentle rotation maintains spinal flexibility and aids daily reaching motions.',
+      'Never force the rotation; move only within a pain-free range.'
+    ],
+    defaultReps: 12,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 30,
+    diagramType: 'core',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Belly Breathing & Core Brace',
+      householdItem: 'Chair',
+      instructions: [
+        'Sit tall with one hand on your stomach.',
+        'Inhale deeply through your nose, expanding your belly.',
+        'Exhale through pursed lips while gently drawing belly button toward spine.',
+        'Hold the brace for 3 seconds.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Safe deep core stabilization for rehabilitation and gentle abdominal toning.'
+    }
+  },
+
+  // STANDARD GYM & COMPOUND MOVEMENTS WITH ACCESSIBLE MODIFICATIONS
+  {
+    id: 'barbell-bench-press',
+    name: 'Barbell Bench Press',
+    category: 'Chest',
+    equipment: 'Barbell',
+    targetMuscles: ['Pectoralis Major'],
+    secondaryMuscles: ['Anterior Deltoid', 'Triceps Brachii'],
+    instructions: [
+      'Lie flat on the bench with feet firmly planted on the floor.',
+      'Grip the bar slightly wider than shoulder-width with eyes directly underneath.',
+      'Unrack the barbell and slowly lower it with control to mid-chest level.',
+      'Press upward powerfully until arms are extended, keeping shoulder blades pinched.'
+    ],
+    tips: ['Keep your wrists straight and avoid bouncing the bar off your chest.', 'Retract your scapula for shoulder safety.'],
     defaultReps: 8,
-    defaultRestSec: 120,
+    defaultSets: 4,
+    defaultWeightKg: 60,
+    defaultRestSec: 90,
+    diagramType: 'press',
+    accessibleAlternative: {
+      title: 'Wall Push-Up or Seated Water Bottle Press',
+      householdItem: 'Wall or Two 1-Liter Water Bottles',
+      instructions: [
+        'Stand arm-length from a flat wall and press chest in and away, OR',
+        'Sit in an armchair and press two water bottles horizontally away from chest.',
+        'Zero barbell weight or floor lying required.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Gentle chest and arm pressing with zero joint compression.'
+    }
   },
   {
     id: 'incline-dumbbell-press',
     name: 'Incline Dumbbell Press',
-    category: 'chest',
-    equipment: 'dumbbell',
-    targetMuscles: ['Clavicular Pectoral (Upper Chest)', 'Anterior Deltoid', 'Triceps'],
+    category: 'Chest',
+    equipment: 'Dumbbell',
+    targetMuscles: ['Upper Chest (Clavicular Head)'],
+    secondaryMuscles: ['Anterior Deltoids', 'Triceps'],
     instructions: [
-      'Set an adjustable bench to a 30° to 45° incline angle.',
-      'Clean dumbbells to your shoulders and sit down firmly.',
-      'Press both dumbbells overhead with palms facing away or slightly inward.',
-      'Lower under control until elbows are level with your torso, feeling a deep chest stretch.',
-      'Squeeze upper chest together as you press back to top.'
+      'Set an adjustable bench to roughly a 30-45 degree incline.',
+      'Hold dumbbells at shoulder height with palms facing forward.',
+      'Drive the weights up towards the ceiling, squeezing upper pecs at the top.',
+      'Lower under controlled tempo back to upper chest level.'
     ],
-    tips: 'Avoid too steep of an incline (>45°) which shifts the load entirely to front deltoids.',
-    defaultSets: 3,
+    tips: ['Do not set the incline too steep to avoid excessive front delt strain.', 'Maintain a natural lower back arch.'],
     defaultReps: 10,
-    defaultRestSec: 90,
-  },
-  {
-    id: 'cable-chest-fly',
-    name: 'High-to-Low Cable Fly',
-    category: 'chest',
-    equipment: 'cable',
-    targetMuscles: ['Sternal Pectoral (Lower Chest)', 'Inner Pectoralis'],
-    instructions: [
-      'Set cable pulleys at head height and grab handles.',
-      'Step forward with a staggered stance, slight forward lean from hips.',
-      'Keeping a slight bend in your elbows, sweep hands downward and together.',
-      'Cross or touch hands in front of your hips and contract your chest hard.',
-      'Slowly open arms wide to feel a full pectoral stretch.'
-    ],
-    tips: 'Maintain constant elbow angle throughout the entire fly movement.',
     defaultSets: 3,
-    defaultReps: 12,
-    defaultRestSec: 60,
+    defaultWeightKg: 20,
+    defaultRestSec: 75,
+    diagramType: 'press',
+    accessibleAlternative: {
+      title: 'Seated Incline Bottle Press',
+      householdItem: 'Comfortable Recliner or Armchair',
+      instructions: [
+        'Lean slightly back in a supportive armchair.',
+        'Hold two cans of soup or water bottles at chest height.',
+        'Press forward and slightly upward at a 45-degree angle.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Upper chest pressing with comfortable back support.'
+    }
   },
   {
     id: 'push-ups',
-    name: 'Classic Push-Ups',
-    category: 'chest',
-    equipment: 'bodyweight',
-    targetMuscles: ['Chest', 'Triceps', 'Anterior Deltoid', 'Core'],
+    name: 'Floor Push-Ups',
+    category: 'Chest',
+    equipment: 'Bodyweight',
+    targetMuscles: ['Pectoralis Major'],
+    secondaryMuscles: ['Triceps', 'Core', 'Anterior Deltoids'],
     instructions: [
-      'Start in a high plank position with hands slightly wider than shoulder-width.',
-      'Engage glutes and core to keep your body in a straight line.',
-      'Lower chest to about an inch off the ground, elbows at 45 degrees.',
-      'Push the ground away forcefully to return to the starting plank.'
+      'Start in a high plank position with hands slightly wider than shoulders.',
+      'Lower your chest to the floor by bending your elbows at approximately 45 degrees.',
+      'Push forcefully away from the floor back to the starting plank position.'
     ],
-    tips: 'Do not let your hips sag or hike up; keep a rigid hollow-body core.',
+    tips: ['Keep your core engaged to prevent your lower back from sagging.', 'Keep neck neutral.'],
+    defaultReps: 15,
     defaultSets: 3,
-    defaultReps: 20,
+    defaultWeightKg: 0,
     defaultRestSec: 60,
+    diagramType: 'wall',
+    accessibleAlternative: {
+      title: 'Incline Countertop or Wall Push-Up',
+      householdItem: 'Kitchen Countertop or Wall',
+      instructions: [
+        'Place hands on kitchen counter at a comfortable angle.',
+        'Lower chest toward edge and press away smoothly.',
+        'Eliminates need to get down to or up from the floor.'
+      ],
+      isSeatedOrWheelchairFriendly: false,
+      isLowImpact: true,
+      targetAdaptation: 'Safe angle that protects wrists, elbows, and eliminates floor transition.'
+    }
   },
-  {
-    id: 'dips-chest',
-    name: 'Chest Dips',
-    category: 'chest',
-    equipment: 'bodyweight',
-    targetMuscles: ['Lower Chest', 'Triceps', 'Shoulders'],
-    instructions: [
-      'Grip the parallel dip bars and hoist yourself up.',
-      'Lean your torso forward at about 30 degrees with knees bent.',
-      'Lower down until shoulders are slightly lower than elbows.',
-      'Push through the palms and straighten arms without hyperextending elbows.'
-    ],
-    tips: 'Leaning forward emphasizes chest; staying upright emphasizes triceps.',
-    defaultSets: 3,
-    defaultReps: 12,
-    defaultRestSec: 90,
-  },
-
-  // BACK
   {
     id: 'barbell-deadlift',
     name: 'Conventional Barbell Deadlift',
-    category: 'back',
-    equipment: 'barbell',
-    targetMuscles: ['Erector Spinae', 'Latissimus Dorsi', 'Hamstrings', 'Glutes', 'Traps'],
+    category: 'Back',
+    equipment: 'Barbell',
+    targetMuscles: ['Erector Spinae', 'Latissimus Dorsi'],
+    secondaryMuscles: ['Glutes', 'Hamstrings', 'Traps'],
     instructions: [
-      'Stand with feet hip-width apart, mid-foot directly under the bar.',
-      'Hinge at hips, bend knees slightly, and grip bar just outside legs.',
-      'Pull chest up, pull shoulder blades down and back, brace core 360 degrees.',
-      'Drive through floor, extending hips and knees simultaneously.',
-      'Lock out with hips tall and shoulders neutral; do not over-arch lumbar spine.'
+      'Stand with feet hip-width apart and bar over mid-foot.',
+      'Hinge at hips to grip the bar just outside your shins.',
+      'Engage your lats, pull the slack out of the barbell, and keep spine neutral.',
+      'Drive your feet into the floor, extending hips and knees synchronously to stand tall.'
     ],
-    tips: 'Drag the barbell up your shins and thighs in a straight vertical path.',
-    defaultSets: 4,
-    defaultReps: 5,
-    defaultRestSec: 150,
+    tips: ['Never round your lower back.', 'Keep the barbell glued close to your body throughout the lift.'],
+    defaultReps: 6,
+    defaultSets: 3,
+    defaultWeightKg: 80,
+    defaultRestSec: 120,
+    diagramType: 'pull',
+    accessibleAlternative: {
+      title: 'Broomstick or Seated Hip Hinge',
+      householdItem: 'Light Broomstick or Towel',
+      instructions: [
+        'Sit upright on a chair with feet flat, OR stand holding a light broomstick across collarbone.',
+        'Hinge forward from the hips with a flat back, feeling a gentle hamstring stretch.',
+        'Squeeze glutes to return to upright position. Zero spinal loading.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Hip hinge motor pattern training without heavy compressive spine force.'
+    }
   },
   {
     id: 'pull-ups',
-    name: 'Overhand Pull-Ups',
-    category: 'back',
-    equipment: 'bodyweight',
-    targetMuscles: ['Latissimus Dorsi', 'Teres Major', 'Rhomboids', 'Biceps'],
+    name: 'Pull-Ups',
+    category: 'Back',
+    equipment: 'Bodyweight',
+    targetMuscles: ['Latissimus Dorsi'],
+    secondaryMuscles: ['Biceps', 'Rhomboids'],
     instructions: [
-      'Hang from an overhead pull-up bar with an overhand grip slightly wider than shoulders.',
-      'Initiate pull by retracting and depressing scapulae.',
-      'Drive elbows down towards hips and pull until chin clears the bar.',
-      'Pause for a fraction of a second at top, then lower smoothly to full hang.'
+      'Grip the pull-up bar overhand with hands slightly wider than shoulder width.',
+      'From a dead hang, engage your shoulder blades downward.',
+      'Pull yourself up until your chin clears the bar.',
+      'Lower under control to full arm extension.'
     ],
-    tips: 'Avoid swinging or kicking legs; maintain controlled tempo.',
-    defaultSets: 4,
-    defaultReps: 8,
-    defaultRestSec: 90,
-  },
-  {
-    id: 'barbell-bent-over-row',
-    name: 'Barbell Bent-Over Row',
-    category: 'back',
-    equipment: 'barbell',
-    targetMuscles: ['Latissimus Dorsi', 'Rhomboids', 'Middle Traps', 'Rear Delts'],
-    instructions: [
-      'Hold a barbell with shoulder-width pronated grip.',
-      'Hinge forward until torso is around 45 degrees to the floor.',
-      'Pull bar towards your navel, driving elbows up and back.',
-      'Squeeze shoulder blades tightly at top.',
-      'Lower bar with control until arms are fully extended.'
-    ],
-    tips: 'Keep lower back neutral and core firmly braced throughout.',
-    defaultSets: 4,
-    defaultReps: 8,
-    defaultRestSec: 90,
-  },
-  {
-    id: 'lat-pulldown',
-    name: 'Wide-Grip Lat Pulldown',
-    category: 'back',
-    equipment: 'cable',
-    targetMuscles: ['Latissimus Dorsi', 'Upper Back', 'Biceps'],
-    instructions: [
-      'Sit comfortably and adjust thigh pad snugly over knees.',
-      'Grip the wide bar with overhand grip wider than shoulders.',
-      'Lean back slightly (10-15 degrees) and draw bar down to upper chest.',
-      'Lead with elbows and squeeze lats hard at bottom.',
-      'Allow bar to return under control to complete stretch at top.'
-    ],
-    tips: 'Do not swing your whole torso backwards to heave the weight down.',
+    tips: ['Avoid kicking your legs or swinging.', 'Think about pulling your elbows down into your back pockets.'],
+    defaultReps: 6,
     defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 75,
+    defaultWeightKg: 0,
+    defaultRestSec: 90,
+    diagramType: 'pull',
+    accessibleAlternative: {
+      title: 'Doorframe Towel Row',
+      householdItem: 'Sturdy Doorframe or Towel',
+      instructions: [
+        'Stand facing an open doorway and grasp both sides of the doorframe at chest height.',
+        'Lean torso back slightly with straight arms.',
+        'Pull your chest toward the doorframe by squeezing your back muscles.',
+        'Step closer to make it gentler, or lean back further for more challenge.'
+      ],
+      isSeatedOrWheelchairFriendly: false,
+      isLowImpact: true,
+      targetAdaptation: 'Horizontal bodyweight row that requires zero hanging grip strength.'
+    }
   },
   {
-    id: 'single-arm-dumbbell-row',
-    name: 'Single-Arm Dumbbell Row',
-    category: 'back',
-    equipment: 'dumbbell',
-    targetMuscles: ['Latissimus Dorsi', 'Rhomboids', 'Rear Deltoid'],
-    instructions: [
-      'Place one knee and same-side hand on a flat bench.',
-      'Hold dumbbell in opposite hand, arm hanging straight down.',
-      'Pull dumbbell up towards hip pocket, keeping elbow tight to ribcage.',
-      'Squeeze back musculature at the top.',
-      'Lower weight slowly back to bottom stretch.'
-    ],
-    tips: 'Pull towards the hip, not straight up to the chest.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 60,
-  },
-
-  // LEGS
-  {
-    id: 'barbell-squat',
+    id: 'barbell-back-squat',
     name: 'Barbell Back Squat',
-    category: 'legs',
-    equipment: 'barbell',
-    targetMuscles: ['Quadriceps', 'Gluteus Maximus', 'Adductors', 'Hamstrings'],
+    category: 'Legs',
+    equipment: 'Barbell',
+    targetMuscles: ['Quadriceps', 'Gluteus Maximus'],
+    secondaryMuscles: ['Hamstrings', 'Adductors', 'Core'],
     instructions: [
-      'Rest bar comfortably across upper traps or rear delts.',
-      'Set feet shoulder-width apart with toes flared slightly out (15-30°).',
-      'Brace abdomen, break at knees and hips together.',
-      'Squat down until hip crease is at or below top of knees (parallel).',
-      'Drive through mid-foot and stand tall with glute contraction.'
+      'Rest barbell across upper traps and unrack with a solid stance.',
+      'Set feet shoulder-width apart with toes turned slightly outward.',
+      'Descend by breaking at hips and knees until thighs are at or below parallel.',
+      'Push the ground away through midfoot and heels to return to standing.'
     ],
-    tips: 'Keep knees tracking in line with your toes throughout the descent and ascent.',
+    tips: ['Keep chest proud and knees tracking in line with your toes.', 'Breathe deep into your diaphragm.'],
+    defaultReps: 8,
     defaultSets: 4,
-    defaultReps: 6,
-    defaultRestSec: 150,
-  },
-  {
-    id: 'romanian-deadlift',
-    name: 'Romanian Deadlift (RDL)',
-    category: 'legs',
-    equipment: 'barbell',
-    targetMuscles: ['Hamstrings', 'Glutes', 'Erector Spinae'],
-    instructions: [
-      'Stand holding bar at thigh height with feet hip-width.',
-      'With soft knees, push hips directly backward as if touching a wall.',
-      'Lower bar close to shins until you feel a deep hamstring stretch.',
-      'Contract glutes and hamstrings to drive hips forward back to standing.'
-    ],
-    tips: 'Movement is a pure hip hinge, not a knee bend squat.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 90,
-  },
-  {
-    id: 'bulgarian-split-squat',
-    name: 'Bulgarian Split Squat',
-    category: 'legs',
-    equipment: 'dumbbell',
-    targetMuscles: ['Quadriceps', 'Glutes', 'Hamstrings', 'Calves'],
-    instructions: [
-      'Stand 2-3 feet in front of a flat bench holding dumbbells.',
-      'Place top of rear foot laces-down onto the bench.',
-      'Descend by bending front knee until rear knee hovers above floor.',
-      'Push through front heel to return to top.'
-    ],
-    tips: 'Lean slightly forward at torso to bias glute engagement.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 75,
-  },
-  {
-    id: 'leg-press',
-    name: '45-Degree Leg Press',
-    category: 'legs',
-    equipment: 'machine',
-    targetMuscles: ['Quadriceps', 'Glutes', 'Adductors'],
-    instructions: [
-      'Sit securely in seat with lower back pinned to backrest.',
-      'Place feet shoulder-width in middle of sled plate.',
-      'Release safety handles and lower sled until knees reach 90 degrees.',
-      'Press sled back up without hyperextending or locking out knees.'
-    ],
-    tips: 'Never allow lower back or hips to lift off the seat pad.',
-    defaultSets: 3,
-    defaultReps: 12,
-    defaultRestSec: 90,
-  },
-  {
-    id: 'standing-calf-raise',
-    name: 'Standing Calf Raise',
-    category: 'legs',
-    equipment: 'machine',
-    targetMuscles: ['Gastrocnemius', 'Soleus'],
-    instructions: [
-      'Position balls of feet on platform edge, shoulders under pads.',
-      'Lower heels below platform level for maximum calf stretch.',
-      'Explode upward onto tips of toes and hold contraction for 1 second.',
-      'Lower down smoothly over 3 seconds.'
-    ],
-    tips: 'A 1-second pause at both top and bottom eliminates elastic rebound.',
-    defaultSets: 4,
-    defaultReps: 15,
-    defaultRestSec: 60,
-  },
-
-  // SHOULDERS
-  {
-    id: 'overhead-barbell-press',
-    name: 'Overhead Barbell Press (OHP)',
-    category: 'shoulders',
-    equipment: 'barbell',
-    targetMuscles: ['Anterior Deltoid', 'Lateral Deltoid', 'Triceps', 'Upper Chest'],
-    instructions: [
-      'Stand with feet shoulder-width, bar resting on front deltoids.',
-      'Brace core and squeeze glutes hard.',
-      'Press bar vertically overhead, moving head slightly back to clear bar path.',
-      'Lock out arms with bar directly over crown of head.',
-      'Lower bar with control back to collarbone level.'
-    ],
-    tips: 'Do not lean back excessively through the lumbar spine.',
-    defaultSets: 4,
-    defaultReps: 6,
+    defaultWeightKg: 70,
     defaultRestSec: 120,
+    diagramType: 'squat',
+    accessibleAlternative: {
+      title: 'Assisted Chair Stand or Wall Sit',
+      householdItem: 'Kitchen Chair with Armrests',
+      instructions: [
+        'Place a chair behind you.',
+        'Lower yourself down until your buttocks lightly tap the seat, then stand back up.',
+        'Use armrests with your hands if you need balance reassurance.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Functional lower-body independence and quad strength without bar pressure.'
+    }
   },
   {
-    id: 'lateral-raise-dumbbell',
-    name: 'Dumbbell Lateral Raise',
-    category: 'shoulders',
-    equipment: 'dumbbell',
-    targetMuscles: ['Lateral Deltoid (Side Delt)'],
+    id: 'overhead-press',
+    name: 'Barbell Overhead Press',
+    category: 'Shoulders',
+    equipment: 'Barbell',
+    targetMuscles: ['Anterior Deltoids', 'Lateral Deltoids'],
+    secondaryMuscles: ['Triceps', 'Core'],
     instructions: [
-      'Stand tall holding dumbbells by sides with neutral grip.',
-      'With slight bend in elbows, raise arms out to sides until parallel to floor.',
-      'Lead with elbows and pinkies slightly higher than thumbs.',
-      'Pause at apex, then lower slowly over 2-3 seconds.'
+      'Stand with feet shoulder-width apart holding barbell at upper collarbone.',
+      'Brace core and glutes tightly.',
+      'Press the barbell straight overhead, tilting head back slightly to clear chin, then pushing head through at lockout.',
+      'Lower bar with control back to collarbone.'
     ],
-    tips: 'Think about pushing the dumbbells away from your sides rather than lifting up.',
-    defaultSets: 4,
-    defaultReps: 15,
-    defaultRestSec: 60,
-  },
-  {
-    id: 'face-pulls',
-    name: 'Cable Face Pulls',
-    category: 'shoulders',
-    equipment: 'cable',
-    targetMuscles: ['Posterior Deltoid', 'Rotator Cuff', 'Rhomboids', 'Traps'],
-    instructions: [
-      'Attach rope to high pulley, grasp ends with thumbs pointing back.',
-      'Step back, pull rope straight toward eyes/forehead while separating hands.',
-      'Externally rotate shoulders at end so hands are beside ears in double-bicep pose.',
-      'Hold contraction for 1 second, then control back to start.'
-    ],
-    tips: 'Outstanding for shoulder health, posture, and rear delt hypertrophy.',
+    tips: ['Do not hyperextend your lower back; maintain a solid core pillar.'],
+    defaultReps: 8,
     defaultSets: 3,
-    defaultReps: 15,
-    defaultRestSec: 60,
+    defaultWeightKg: 35,
+    defaultRestSec: 90,
+    diagramType: 'press',
+    accessibleAlternative: {
+      title: 'Seated Water Bottle Press',
+      householdItem: 'Two Small Water Bottles & Chair',
+      instructions: [
+        'Sit upright in a chair to take all compressive stress off lower back.',
+        'Hold two 500ml water bottles at shoulder height.',
+        'Smoothly press overhead and return.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Shoulder stability without lower-back strain or standing fatigue.'
+    }
   },
-  {
-    id: 'arnold-press',
-    name: 'Arnold Dumbbell Press',
-    category: 'shoulders',
-    equipment: 'dumbbell',
-    targetMuscles: ['Anterior Deltoid', 'Lateral Deltoid', 'Triceps'],
-    instructions: [
-      'Sit on upright bench with dumbbells at chest level, palms facing you.',
-      'As you press overhead, rotate wrists outward until palms face forward at top.',
-      'Reverse rotation smoothly as you lower dumbbells back to chest.'
-    ],
-    tips: 'Smooth fluid rotation through the entire range of motion.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 75,
-  },
-
-  // ARMS
   {
     id: 'barbell-bicep-curl',
     name: 'Barbell Bicep Curl',
-    category: 'arms',
-    equipment: 'barbell',
-    targetMuscles: ['Biceps Brachii', 'Brachialis'],
+    category: 'Arms',
+    equipment: 'Barbell',
+    targetMuscles: ['Biceps Brachii'],
+    secondaryMuscles: ['Forearms'],
     instructions: [
-      'Stand holding barbell with supinated shoulder-width grip.',
-      'Pin elbows to sides and curl bar upward toward chest.',
-      'Squeeze biceps peak at top without swinging elbows forward.',
-      'Lower under control to full arm extension.'
+      'Stand tall holding a barbell with underhand shoulder-width grip.',
+      'Pin elbows close to sides and curl bar upwards toward chest.',
+      'Squeeze biceps hard at top without letting elbows swing forward.',
+      'Lower under steady control.'
     ],
-    tips: 'Avoid rocking torso back and forth to heave the weight.',
-    defaultSets: 3,
+    tips: ['Keep upper arms stationary; avoid using hip momentum.'],
     defaultReps: 10,
+    defaultSets: 3,
+    defaultWeightKg: 20,
     defaultRestSec: 60,
+    diagramType: 'curl',
+    accessibleAlternative: {
+      title: 'Seated Soup Can Curls',
+      householdItem: 'Two Cans of Soup or Water Bottles',
+      instructions: [
+        'Sit comfortably in your chair with arms hanging naturally at your sides.',
+        'Hold cans of soup and curl upward, squeezing bicep at top.',
+        'Lower smoothly. Great for hand grip and elbow joint health.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Joint-friendly arm strength that can be performed entirely seated.'
+    }
   },
   {
-    id: 'tricep-rope-pushdown',
-    name: 'Cable Tricep Rope Pushdown',
-    category: 'arms',
-    equipment: 'cable',
-    targetMuscles: ['Triceps Lateral & Medial Heads'],
+    id: 'air-squats',
+    name: 'Air Squats',
+    category: 'Legs',
+    equipment: 'Bodyweight',
+    targetMuscles: ['Quadriceps', 'Glutes'],
+    secondaryMuscles: ['Calves'],
     instructions: [
-      'Attach rope to upper pulley and grab ends with neutral grip.',
-      'Tuck elbows at sides with slight forward torso lean.',
-      'Extend arms downward, flaring rope ends apart at bottom for full contraction.',
-      'Allow hands to return up to chest level with elbows remaining motionless.'
+      'Stand with feet slightly wider than shoulders.',
+      'Squat down deeply, keeping chest high and heels pinned.',
+      'Drive back up to full standing lockout.'
     ],
-    tips: 'Keep upper arms completely stationary throughout the movement.',
-    defaultSets: 3,
-    defaultReps: 12,
-    defaultRestSec: 60,
+    tips: ['Great for rapid rep volume counting.'],
+    defaultReps: 20,
+    defaultSets: 4,
+    defaultWeightKg: 0,
+    defaultRestSec: 30,
+    diagramType: 'squat',
+    accessibleAlternative: {
+      title: 'Chair Tap Squat',
+      householdItem: 'Sturdy Chair',
+      instructions: [
+        'Perform squat with chair right behind you for full confidence.',
+        'Tap seat gently with hips before returning to standing.'
+      ],
+      isSeatedOrWheelchairFriendly: false,
+      isLowImpact: true,
+      targetAdaptation: 'Safe depth-limited squat with built-in safety seat.'
+    }
   },
-  {
-    id: 'incline-dumbbell-curl',
-    name: 'Incline Dumbbell Bicep Curl',
-    category: 'arms',
-    equipment: 'dumbbell',
-    targetMuscles: ['Biceps Brachii Long Head'],
-    instructions: [
-      'Sit on an incline bench set to 45 degrees, arms hanging straight down.',
-      'Curl dumbbells upward while keeping upper arms vertical.',
-      'Supinate wrists at top and squeeze.',
-      'Lower all the way down to complete bicep stretch.'
-    ],
-    tips: 'The incline position stretches the long head of the bicep for maximal peak development.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 60,
-  },
-  {
-    id: 'skull-crushers',
-    name: 'Lying EZ-Bar Skull Crushers',
-    category: 'arms',
-    equipment: 'barbell',
-    targetMuscles: ['Triceps Long Head', 'Triceps Medial Head'],
-    instructions: [
-      'Lie flat on bench holding EZ-curl bar above chest with arms extended.',
-      'Angling upper arms slightly back toward head, bend elbows to lower bar to forehead/crown.',
-      'Keep elbows narrow; do not let them flare wide.',
-      'Extend forearms forcefully back to starting angle.'
-    ],
-    tips: 'Angling upper arms 10-15 degrees backward maintains continuous triceps tension at the top.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 75,
-  },
-  {
-    id: 'hammer-curls',
-    name: 'Dumbbell Hammer Curls',
-    category: 'arms',
-    equipment: 'dumbbell',
-    targetMuscles: ['Brachioradialis', 'Brachialis', 'Forearms'],
-    instructions: [
-      'Stand holding dumbbells with palms facing each other (neutral grip).',
-      'Curl dumbbells upward while keeping palms facing inward.',
-      'Squeeze forearms and outer arm at top.',
-      'Lower with control.'
-    ],
-    tips: 'Builds arm thickness and forearm grip strength.',
-    defaultSets: 3,
-    defaultReps: 12,
-    defaultRestSec: 60,
-  },
-
-  // CORE
-  {
-    id: 'hanging-leg-raises',
-    name: 'Hanging Leg Raises',
-    category: 'core',
-    equipment: 'bodyweight',
-    targetMuscles: ['Rectus Abdominis (Lower Abs)', 'Hip Flexors', 'Obliques'],
-    instructions: [
-      'Hang from pull-up bar with overhand grip and engaged shoulders.',
-      'Keeping legs straight or with slight knee bend, raise feet toward bar level.',
-      'Curl pelvis up at top to fully recruit abdominal wall.',
-      'Lower legs slowly without swinging back and forth.'
-    ],
-    tips: 'Do not use momentum; curl the pelvis up rather than simply lifting thighs.',
-    defaultSets: 3,
-    defaultReps: 12,
-    defaultRestSec: 60,
-  },
-  {
-    id: 'ab-wheel-rollout',
-    name: 'Ab Wheel Rollout',
-    category: 'core',
-    equipment: 'bodyweight',
-    targetMuscles: ['Deep Core', 'Transverse Abdominis', 'Lats'],
-    instructions: [
-      'Kneel on mat with hands on ab wheel handles directly under shoulders.',
-      'Roll wheel forward, extending body into straight line as far as controllable.',
-      'Contract abs and pull hips back to starting position.'
-    ],
-    tips: 'Maintain posterior pelvic tilt (slight round in lower back) to protect spine.',
-    defaultSets: 3,
-    defaultReps: 10,
-    defaultRestSec: 60,
-  },
-  {
-    id: 'plank-hold',
-    name: 'Forearm Plank Hold',
-    category: 'core',
-    equipment: 'bodyweight',
-    targetMuscles: ['Core', 'Transverse Abdominis', 'Shoulders', 'Glutes'],
-    instructions: [
-      'Place forearms on floor with elbows directly beneath shoulders.',
-      'Extend legs back, toes tucked, body forming a rigid straight bridge.',
-      'Squeeze glutes, quads, and brace abdominal wall.',
-      'Breathe steadily while holding position for target time.'
-    ],
-    tips: 'Pull elbows toward toes isometrically to multiply core activation.',
-    defaultSets: 3,
-    defaultReps: 60, // seconds
-    defaultRestSec: 45,
-  },
-
-  // CARDIO & CONDITIONING / 3000 HYBRID
   {
     id: 'kettlebell-swings',
-    name: 'Russian Kettlebell Swings',
-    category: 'cardio',
-    equipment: 'kettlebell',
-    targetMuscles: ['Glutes', 'Hamstrings', 'Lower Back', 'Core', 'Shoulders'],
+    name: 'Kettlebell Swings',
+    category: 'Full Body',
+    equipment: 'Kettlebell',
+    targetMuscles: ['Glutes', 'Hamstrings'],
+    secondaryMuscles: ['Core', 'Shoulders'],
     instructions: [
       'Stand feet shoulder-width, kettlebell one foot in front on floor.',
-      'Hinge hips back and hike bell between legs.',
-      'Drive hips forward with explosive hip extension, snapping bell to chest height.',
-      'Let bell swing naturally down and hinge back into next rep.'
+      'Hinge hips back, hike bell between legs like a football.',
+      'Snap hips forward explosively, swinging bell to chest level using hip thrust power.',
+      'Let bell swing back between legs and repeat fluidly.'
     ],
-    tips: 'Power comes from hips and glutes, not lifting with arms.',
+    tips: ['Power comes from hips snapping forward, not lifting with arms.'],
+    defaultReps: 20,
     defaultSets: 4,
-    defaultReps: 25,
+    defaultWeightKg: 16,
     defaultRestSec: 45,
+    diagramType: 'pull',
+    accessibleAlternative: {
+      title: 'Standing Hip Thrust with Cushion Squeeze',
+      householdItem: 'Sofa Cushion or Pillow',
+      instructions: [
+        'Stand tall with feet hip-width apart holding a soft pillow against your thighs.',
+        'Push hips back slightly, then squeeze glutes and drive hips forward tall.',
+        'Zero ballistic impact or heavy swinging object.'
+      ],
+      isSeatedOrWheelchairFriendly: false,
+      isLowImpact: true,
+      targetAdaptation: 'Low-impact hip extension that builds glute endurance safely.'
+    }
   },
   {
-    id: 'burpees',
-    name: 'Full Chest-to-Floor Burpees',
-    category: 'cardio',
-    equipment: 'bodyweight',
-    targetMuscles: ['Full Body', 'Chest', 'Quads', 'Cardiovascular System'],
+    id: 'seated-knee-lifts',
+    name: 'Seated Alternating Knee Lifts',
+    category: 'Core',
+    equipment: 'Household / None',
+    targetMuscles: ['Lower Abdominals', 'Hip Flexors'],
+    secondaryMuscles: ['Core Stabilizers'],
     instructions: [
-      'From standing, drop into squat and place hands on ground.',
-      'Jump feet back into plank and lower chest to floor.',
-      'Push up, jump feet back towards hands.',
-      'Explode vertically with arms overhead and clap.'
+      'Sit tall on a sturdy chair with feet flat and spine lengthened.',
+      'Place hands on armrests or edges of seat for stability.',
+      'Slowly lift your right knee towards your chest as high as comfortable.',
+      'Pause for 1 second, lower down, and repeat with the left knee.'
     ],
-    tips: 'Maintain steady rhythmic pacing for endurance workouts.',
-    defaultSets: 4,
-    defaultReps: 15,
-    defaultRestSec: 45,
-  },
-  {
-    id: 'box-jumps',
-    name: 'Plyometric Box Jumps',
-    category: 'cardio',
-    equipment: 'bodyweight',
-    targetMuscles: ['Calves', 'Quads', 'Glutes', 'Central Nervous System'],
-    instructions: [
-      'Stand facing 20-30 inch plyo box with athletic stance.',
-      'Swing arms back, hinge hips, and explode upward.',
-      'Land softly on top of box with knees slightly bent in half-squat.',
-      'Stand to full hip extension, step down safely one foot at a time.'
-    ],
-    tips: 'Focus on soft, quiet landing mechanics to protect joints.',
+    tips: ['Keep your chest lifted; avoid slouching your upper back.'],
+    defaultReps: 12,
     defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 45,
+    diagramType: 'core',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Heel Taps / Foot Slides',
+      householdItem: 'Smooth Floor or Towel under feet',
+      instructions: [
+        'Remain comfortably seated in chair or wheelchair.',
+        'Slide one foot out forward onto the heel, then slide it back under you.',
+        'Engages core and hip musculature with zero leg lifting off the ground.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Zero hip flexion strain, 100% accessible seated core and mobility exercise.'
+    }
+  },
+  {
+    id: 'seated-water-bottle-lateral-raises',
+    name: 'Seated Water-Bottle Lateral Raises',
+    category: 'Shoulders',
+    equipment: 'Household / None',
+    targetMuscles: ['Lateral Deltoids'],
+    secondaryMuscles: ['Trapezius', 'Rotator Cuff'],
+    instructions: [
+      'Sit comfortably upright with feet flat.',
+      'Hold two 500ml water bottles or soup cans at your sides.',
+      'With elbows slightly bent, raise arms out to the sides until parallel with floor.',
+      'Slowly lower back down under 2-3 seconds of control.'
+    ],
+    tips: ['Raise only to shoulder height; keep neck relaxed.'],
     defaultReps: 10,
-    defaultRestSec: 60,
+    defaultSets: 3,
+    defaultWeightKg: 1,
+    defaultRestSec: 45,
+    diagramType: 'raise',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Wall Angels / Arm Sweeps',
+      householdItem: 'Wall or Chair Back',
+      instructions: [
+        'Sit with back against chair or wall.',
+        'Place back of hands against wall at ear level and slide upward gently.',
+        'Zero added weight; delivers exceptional thoracic mobility and posture support.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Rotator cuff and posture restoration without any external weights.'
+    }
   },
   {
-    id: 'jump-rope',
-    name: 'Speed Jump Rope',
-    category: 'cardio',
-    equipment: 'cardio',
-    targetMuscles: ['Calves', 'Cardio', 'Forearms', 'Coordination'],
+    id: 'supported-chair-hip-hinge',
+    name: 'Chair-Supported Hip Hinge',
+    category: 'Legs',
+    equipment: 'Household / None',
+    targetMuscles: ['Hamstrings', 'Glutes'],
+    secondaryMuscles: ['Lower Back Support'],
     instructions: [
-      'Hold handles at hip height, elbows close to ribs.',
-      'Turn rope with wrists, not whole arms.',
-      'Stay light on balls of feet, jumping only 1-2 inches off floor.',
-      'Keep continuous fluid rhythm.'
+      'Stand facing the back of a sturdy chair, placing hands lightly on the top rail.',
+      'Keep knees soft and push your hips backwards towards the wall behind you.',
+      'Lower your torso until you feel a gentle stretch in the back of your thighs.',
+      'Squeeze your glutes and stand back up tall.'
     ],
-    tips: 'Turn the rope from the wrists, keeping shoulders relaxed.',
+    tips: ['Chair eliminates any risk of losing balance.'],
+    defaultReps: 10,
     defaultSets: 3,
-    defaultReps: 100,
+    defaultWeightKg: 0,
     defaultRestSec: 45,
+    diagramType: 'hinge',
+    isSeatedFriendly: false,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Hamstring Towel Stretch & Squeeze',
+      householdItem: 'Bath Towel & Chair',
+      instructions: [
+        'Sit on chair, extend one leg out with heel on floor.',
+        'Loop a bath towel around ball of foot, gently pull towel while sitting tall.',
+        'Hold for 10-15 seconds and breathe gently.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Completely seated posterior chain mobility for seniors with balance concerns.'
+    }
+  },
+  {
+    id: 'seated-shadow-boxing',
+    name: 'Seated Shadow Boxing & Arm Punches',
+    category: 'Cardio',
+    equipment: 'Household / None',
+    targetMuscles: ['Shoulders', 'Upper Back'],
+    secondaryMuscles: ['Cardiovascular System', 'Core'],
+    instructions: [
+      'Sit upright in your chair with elbows bent and fists gently by your chin.',
+      'Extend right arm forward in a controlled punch, then pull back.',
+      'Extend left arm forward, alternating punches smoothly.',
+      'Breathe rhythmically throughout.'
+    ],
+    tips: ['Keep punches fluid; do not hyperextend or snap your elbows.'],
+    defaultReps: 20,
+    defaultSets: 3,
+    defaultWeightKg: 0,
+    defaultRestSec: 45,
+    diagramType: 'press',
+    isSeatedFriendly: true,
+    isElderlyFriendly: true,
+    isLowImpact: true,
+    accessibleAlternative: {
+      title: 'Seated Arm Reaches with Deep Breathing',
+      householdItem: 'Comfortable Chair / Wheelchair',
+      instructions: [
+        'Sit relaxed with arms resting on lap.',
+        'Reach one arm gently across your chest, breathe in deeply, and return.',
+        'Alternate sides gently for joint circulation and cardiopulmonary wellness.'
+      ],
+      isSeatedOrWheelchairFriendly: true,
+      isLowImpact: true,
+      targetAdaptation: 'Gentle aerobic circulation with zero joint impact or sudden exertion.'
+    }
   }
-];
-
-export const MUSCLE_GROUPS: { id: MuscleGroup; label: string; count: number }[] = [
-  { id: 'chest', label: 'Chest', count: 5 },
-  { id: 'back', label: 'Back', count: 5 },
-  { id: 'legs', label: 'Legs', count: 5 },
-  { id: 'shoulders', label: 'Shoulders', count: 4 },
-  { id: 'arms', label: 'Arms', count: 5 },
-  { id: 'core', label: 'Core', count: 3 },
-  { id: 'cardio', label: 'Cardio & HIIT', count: 4 },
-  { id: 'full-body', label: 'Full Body', count: 8 },
 ];

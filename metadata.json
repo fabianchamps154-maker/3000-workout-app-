@@ -1,7 +1,6 @@
 {
   "name": "3000 Workout App",
-  "description": "Comprehensive workout tracker, custom routine builder, guided workout player, and fitness milestone tracking application.",
-  "capabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "description": "Mobile-first workout tracker, 3000-rep challenge, solid pink and green design, visual movement diagrams, and non-equipment alternatives for elderly and disabled athletes.",
+  "permissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

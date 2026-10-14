@@ -1,71 +1,72 @@
 @import "tailwindcss";
 
 @layer base {
-  body {
-    background-color: #050608;
-    color: #e4e4e7;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    overflow-wrap: break-word;
+  html, body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior-y: none;
+  }
+  
+  .font-mono-numbers {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-    word-break: normal;
+  /* Prevent text zoom on input focus on iOS Safari */
+  input, select, textarea {
+    font-size: 16px;
   }
-}
-
-.font-display {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.05em;
-}
-
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
-  font-feature-settings: 'tnum' on, 'zero' on;
-}
-
-/* Hide scrollbar while preserving scroll functionality */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  @media (min-width: 640px) {
+    input, select, textarea {
+      font-size: 0.875rem; /* 14px on desktop */
+    }
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Solid Pink and Green Helpers (No gradients) */
+.solid-pink {
+  background-color: #db2777;
+  color: #ffffff;
 }
 
-/* Custom deep dark scrollbars */
+.solid-green {
+  background-color: #059669;
+  color: #ffffff;
+}
+
+.solid-pink-border {
+  border-color: #db2777;
+}
+
+.solid-green-border {
+  border-color: #059669;
+}
+
+/* Safe area padding helper for modern mobile home bars */
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.safe-top {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+/* Custom scrollbars for bright solid theme */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050608;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #14161f;
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #232736;
+  background: #94a3b8;
 }

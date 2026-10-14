@@ -1,149 +1,68 @@
-# 🏋️‍♂️ 3000 Workout App
+# 3000 Workout App
 
-> High-volume workout tracker, custom routine builder, guided workout player, and the **3,000 Reps Milestone Challenge**.
+A comprehensive, mobile-first workout tracking and fitness application built around the 3,000-Rep Milestone Training System, featuring solid pink-and-green aesthetics, visual technique guides, and non-equipment alternatives for seniors and disabled athletes.
 
-[![React 19](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org)
-[![Vite](https://img.shields.io/badge/Vite-6.2-646CFF.svg)](https://vitejs.dev)
-[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-38B2AC.svg)](https://tailwindcss.com)
+## Key Features
 
----
+### 1. Mobile App Screen Architecture
+- **Smartphone Device Shell**: Formatted specifically to fit a mobile app screen with native status bar (time, signal, wifi, battery, dynamic island), compact app bar, and fixed bottom tab bar.
+- **Sticky Bottom Navigation**: Thumb-friendly navigation bar with 5 primary tabs:
+  - **Today**: Quick stats, milestone gauge, visual guides, and routine launchpad.
+  - **Routines**: Curated splits and custom workout blueprints.
+  - **Visuals**: Illustrated vector technique cues and household modifications.
+  - **3000**: Spartan 3000-rep challenge meter and quick daily rep bank.
+  - **Progress**: Comprehensive history log and Personal Records (PR) board.
+- **Floating Active Workout Mini-Bar**: Persistent floating resume widget appears above the bottom bar during any active session for quick 1-tap resumption.
 
-## 🚀 Overview
+### 2. High-Contrast Solid Pink & Green Palette
+- Crisp, bold, solid colors without gradient blurring (`#db2777` solid pink, `#059669` solid emerald green, `#fafafa` bright background, `#18181b` high-contrast typography).
+- Clear visual hierarchy with solid status chips, solid progress bars, and accessible border contrasts.
 
-**3000 Workout App** is an athletic training platform built for lifters, athletes, and fitness enthusiasts pursuing high training volume, consistency, and measurable progression.
+### 3. Visual Technique Diagrams & Non-Equipment Alternatives
+- **Illustrated Vector SVG Diagrams**: Accurate, high-contrast movement figures covering all fundamental biomechanical patterns:
+  - **Chest & Push**: Standard Bench/Push-Up ↔ Wall Push-Up & Seated Isometric Chest Squeeze
+  - **Legs & Squats**: Barbell Squats ↔ Chair Sit-to-Stand & Seated Knee Extensions
+  - **Back & Pull**: Conventional Deadlift ↔ Seated Doorframe Towel Row
+  - **Glutes & Hamstrings**: Romanian Deadlift ↔ Chair-Supported Hip Hinge
+  - **Arms & Biceps**: Barbell Curl ↔ Seated Soup Can / Water Bottle Curls
+  - **Core & Abdominals**: Floor Planks ↔ Seated Alternating Knee Lifts & Torso Twists
+  - **Shoulders & Posture**: Overhead Press ↔ Seated Water Bottle Lateral Raises & Wall Angels
+  - **Hips & Pelvis**: Heavy Barbell Hip Thrust ↔ Gentle Bed/Mat Pelvic Bridge
+- **Accessibility & Elderly Badges**: Every movement is tagged with **Wheelchair / Chair Ready**, **Zero Joint / Spine Strain**, and **Senior Fall-Safe** indicators.
+- **Household Substitutions**: Uses common household items (dining chairs, flat walls, 16oz water bottles, bath towels, sofa cushions) so anyone can train without gym equipment.
 
-At the core of the app is **The 3,000 Milestone Club**—a monthly goal tracking system challenging athletes to log 3,000 repetitions across compound and functional movements, racking up volume and unlocking tiered achievements.
+### 4. Body Somatotype & Weight Personalization
+- Calibrate workout pacing, volume, and starting loads to user somatotype:
+  - **Ectomorph**: Hypertrophy focus with longer rest periods.
+  - **Mesomorph**: Athletic power, balanced hypertrophy, and high volume.
+  - **Endomorph**: Conditioning density, metabolic pacing, and shorter rest.
+- Weight calibration dynamically computes volume moved in kilograms (kg) or pounds (lbs).
 
----
+### 5. Interactive Session Timer & Live Tracker
+- Live stopwatch, set-by-set weight and repetition logging, and automated rest countdown timers with Web Audio API chime notifications.
+- Celebratory confetti and post-workout summary with automated Personal Record (PR) detection.
 
-## ✨ Features
+### 6. Spartan 3000 Rep Milestone Challenge
+- Global 3,000-repetition counter tracking every rep across formal workouts and casual daily sets.
+- Quick Rep Bank tool to log daily pushups, chair stands, or walking lunges.
+- Milestone medals (Initiate, Soldier, Halfway Hero, Vanguard, Spartan 3000 Legend).
 
-### 1. ⚡ Live Interactive Workout Player
-- **Set-by-Set Logging:** Real-time logging of weight (kg/lbs) and repetitions with quick set checkoffs.
-- **Automated Rest Countdown:** When a set is checked off, the rest timer automatically triggers with progress visualization.
-- **Zero-Latency Audio Synthesizer:** Built-in Web Audio API alerts for countdown ticks (3.. 2.. 1..) and rest completion chimes without external assets.
-- **Dynamic Workout Customization:** Add or delete sets and insert exercises on the fly.
-- **Celebration Summary:** Confetti effects and detailed performance breakdowns (total volume, reps, estimated calories burned, points earned).
-- **Background Minimization:** Keep the timer running while browsing other routines or exercise guides.
+### 7. Local Storage & JSON Backup
+- Zero cloud account required; all workouts, PRs, profile settings, and custom routines persist locally in `localStorage`.
+- 1-click JSON backup export for data portability.
 
-### 2. 🏆 The 3000 Milestone Club
-- **Volume & Rep Progress:** Real-time gauge tracking progress toward the 3,000-rep monthly milestone.
-- **Pacing Intelligence:** Calculates recommended daily and per-session quotas to stay on track.
-- **Milestone Tier Badges:**
-  - 🥉 **Rookie 500:** 500 reps logged
-  - 🥈 **Centurion 1,000:** 1,000 reps logged
-  - 🥇 **Titan 2,000:** 2,000 reps logged
-  - 👑 **The 3000 Champion:** 3,000 reps completed
-- **Alternative 3000 Metrics:** Track 30,000 kg total volume lifted, 3,000 active calories burned, or 3,000 workout minutes.
+## Development & Build
 
-### 3. 📋 Signature Routines & Custom Builder
-- **Pre-Configured Routines:**
-  - **Spartan 3000 Challenge:** Flagship high-volume full-body conditioning benchmark.
-  - **Push Armor 3000:** Heavy compound chest, shoulders, and triceps hypertrophy.
-  - **Titan Pull 3000:** Deadlifts, pull-ups, rows, and arm thickness protocol.
-  - **Zero-Equipment Beast:** Bodyweight and core calisthenics.
-- **Custom Routine Creator:** Build bespoke workouts with configurable target sets, reps, starting weights, and rest intervals.
-- **Routine Duplication:** Clone and modify existing routines.
-
-### 4. 📚 Comprehensive Exercise Database
-- 60+ exercises categorized by muscle groups (Chest, Back, Legs, Shoulders, Arms, Core, Cardio).
-- Filter by muscle group and equipment type (Barbell, Dumbbell, Bodyweight, Cable, Machine, Kettlebell).
-- Detailed anatomical instructions, target muscle lists, and form cues.
-- 1-click "Quick Start" launch for any individual exercise.
-
-### 5. 🧮 Athletic Training Calculators
-- **One-Rep Max (1RM) Calculator:** Combines Epley and Brzycki equations to calculate your estimated maximum lift and generates a complete training load percentage table (50% to 95%).
-- **Barbell Plate Loader:** Calculates the exact Olympic plates (25kg, 20kg, 15kg, 10kg, 5kg, 2.5kg, 1.25kg) required per sleeve and renders a visual barbell diagram.
-- **HIIT & Rest Interval Timer:** Standalone customizable interval timer with auditory countdown beeps.
-
-### 6. 📊 Analytics, History & Data Privacy
-- View chronological workout sessions with drill-down modals for individual sets.
-- Aggregate metrics: Total workouts, total volume lifted, total reps, and average duration.
-- **Full Data Portability:** Export workout history to JSON backup and import anytime.
-- **Local-First:** All data persists securely in local storage.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework:** [React 19](https://react.dev/)
-- **Build Tool:** [Vite 6](https://vitejs.dev/)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Visuals:** [Canvas Confetti](https://www.npmjs.com/package/canvas-confetti)
-- **Audio:** Web Audio API (Synthesizer)
-
----
-
-## 💻 Getting Started
-
-### Prerequisites
-- Node.js (v20 or v22 recommended)
-- npm
-
-### Installation
 ```bash
-# Clone the repository
-git clone https://github.com/fabianchamps154-maker/3000-workout-app-.git
-cd 3000-workout-app-
-
 # Install dependencies
 npm install
-```
 
-### Running in Development
-```bash
+# Start local development server (port 3000)
 npm run dev
-```
-The application will be running at `http://localhost:3000`.
 
-### Building for Production
-```bash
+# Run TypeScript typecheck
+npm run lint
+
+# Production build
 npm run build
 ```
-
-### Linting & Type Checking
-```bash
-npm run lint
-```
-
----
-
-## 📁 Project Structure
-
-```
-├── public/                 # Static assets
-├── src/
-│   ├── components/
-│   │   ├── Navbar.tsx          # Top navigation, streak counter & active session pill
-│   │   ├── Dashboard.tsx       # 3000 Progress gauge, quick stats & launch cards
-│   │   ├── WorkoutPlayer.tsx   # Live set tracker, rest timer & sound alerts
-│   │   ├── RoutinesView.tsx    # Signature & custom routine library
-│   │   ├── ExerciseLibrary.tsx # 60+ exercises with technique guides
-│   │   ├── Challenge3000.tsx   # 3000 Club milestones & badge unlocks
-│   │   ├── HistoryView.tsx     # Past workout logs & JSON export/import
-│   │   └── FitnessTools.tsx    # 1RM calculator, plate loader & interval timer
-│   ├── data/
-│   │   ├── exercises.ts        # Comprehensive exercise catalog
-│   │   └── presetRoutines.ts   # Signature preset workout templates
-│   ├── utils/
-│   │   ├── audio.ts            # Web Audio API alert synthesizer
-│   │   └── storage.ts          # LocalStorage persistence & seed data
-│   ├── types.ts                # TypeScript definitions & interfaces
-│   ├── App.tsx                 # Main application controller
-│   ├── main.tsx                # React entry point
-│   └── index.css               # Global styles & Tailwind CSS v4 imports
-├── index.html              # HTML shell & athletic font imports
-├── metadata.json           # AI Studio app metadata
-├── package.json            # Scripts & dependencies
-├── tsconfig.json           # TypeScript configuration
-└── vite.config.ts          # Vite build configuration
-```
-
----
-
-## 📄 License
-
-MIT License. Built for athletes everywhere.

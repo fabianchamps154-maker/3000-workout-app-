@@ -1,24 +1,51 @@
-export type MuscleGroup = 
-  | 'chest'
-  | 'back'
-  | 'legs'
-  | 'shoulders'
-  | 'arms'
-  | 'core'
-  | 'cardio'
-  | 'full-body';
+export type MuscleGroup =
+  | 'Chest'
+  | 'Back'
+  | 'Legs'
+  | 'Shoulders'
+  | 'Arms'
+  | 'Core'
+  | 'Cardio'
+  | 'Full Body';
 
-export type EquipmentType = 
-  | 'barbell'
-  | 'dumbbell'
-  | 'cable'
-  | 'machine'
-  | 'bodyweight'
-  | 'kettlebell'
-  | 'bands'
-  | 'cardio';
+export type EquipmentType =
+  | 'Barbell'
+  | 'Dumbbell'
+  | 'Cable'
+  | 'Machine'
+  | 'Bodyweight'
+  | 'Kettlebell'
+  | 'Household / None';
 
-export type DifficultyLevel = 'Beginner' | 'Intermediate' | 'Advanced';
+export type Difficulty = 'Beginner' | 'Intermediate' | 'Advanced';
+
+export type BodyType = 'Ectomorph' | 'Mesomorph' | 'Endomorph';
+
+export type FitnessGoal = 
+  | 'Hypertrophy & Muscle Gain' 
+  | 'Max Strength & Power' 
+  | 'Fat Loss & Conditioning' 
+  | 'Athletic Performance'
+  | 'Joint Health & Mobility';
+
+export interface AccessibleAlternative {
+  title: string;
+  householdItem: string; // e.g. "Sturdy Kitchen Chair", "Wall", "Water Bottles", "Towel"
+  instructions: string[];
+  isSeatedOrWheelchairFriendly: boolean;
+  isLowImpact: boolean;
+  targetAdaptation: string;
+}
+
+export interface UserProfile {
+  bodyType: BodyType;
+  bodyWeightKg: number;
+  fitnessGoal: FitnessGoal;
+  experienceLevel: Difficulty;
+  targetDailyReps: number;
+  isPersonalized: boolean;
+  prefersAccessibleMode?: boolean; // For elderly and disabled users
+}
 
 export interface Exercise {
   id: string;
@@ -28,200 +55,103 @@ export interface Exercise {
   targetMuscles: string[];
   secondaryMuscles?: string[];
   instructions: string[];
-  tips: string;
-  defaultSets: number;
+  tips: string[];
   defaultReps: number;
+  defaultSets: number;
+  defaultWeightKg: number;
   defaultRestSec: number;
-  iconName?: string;
+  diagramType: 'press' | 'squat' | 'pull' | 'hinge' | 'curl' | 'core' | 'raise' | 'chair' | 'wall' | 'bridge';
+  isSeatedFriendly?: boolean;
+  isElderlyFriendly?: boolean;
+  isLowImpact?: boolean;
+  accessibleAlternative: AccessibleAlternative;
 }
 
-export interface RoutineExercise {
-  exerciseId: string;
-  exerciseName: string;
-  targetSets: number;
-  targetReps: number;
-  targetWeightKg?: number;
-  restSeconds: number;
-  notes?: string;
-}
-
-export interface WorkoutRoutine {
+export interface SetData {
   id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  category: MuscleGroup | 'conditioning' | 'power' | 'hybrid';
-  difficulty: DifficultyLevel;
-  durationMinutes: number;
-  target3000Score: number; // e.g. reps or points contributed
-  isCustom?: boolean;
-  exercises: RoutineExercise[];
-  tags: string[];
-}
-
-export interface WorkoutSet {
   setNumber: number;
   reps: number;
   weightKg: number;
   completed: boolean;
-  rpe?: number; // Rate of perceived exertion 1-10
+  isWarmup?: boolean;
 }
 
-export interface SessionExercise {
+export interface RoutineExercise {
+  exerciseId: string;
+  sets: {
+    reps: number;
+    weightKg: number;
+  }[];
+  restSec: number;
+}
+
+export interface Routine {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  difficulty: Difficulty;
+  durationMinutes: number;
+  exercises: RoutineExercise[];
+  tags: string[];
+  isCustom?: boolean;
+  isAccessible?: boolean;
+  personalizedFor?: {
+    bodyType: BodyType;
+    bodyWeightKg: number;
+  };
+}
+
+export interface ActiveExerciseSession {
   exerciseId: string;
   exerciseName: string;
   category: MuscleGroup;
-  sets: WorkoutSet[];
-  restSeconds: number;
-  completed: boolean;
+  restSec: number;
+  sets: SetData[];
 }
 
-export interface ActiveWorkoutSession {
+export interface CompletedWorkout {
   id: string;
+  title: string;
   routineId?: string;
-  routineName: string;
-  startTime: number; // timestamp
-  elapsedSeconds: number;
-  isPaused: boolean;
-  exercises: SessionExercise[];
-  currentExerciseIndex: number;
-  currentSetIndex: number;
-  restTimer: {
-    isActive: boolean;
-    remainingSeconds: number;
-    totalSeconds: number;
-  };
-}
-
-export interface CompletedWorkoutLog {
-  id: string;
-  routineId?: string;
-  routineName: string;
-  date: string; // ISO string
+  startTime: number;
+  endTime: number;
   durationSeconds: number;
-  totalVolumeKg: number;
+  exercises: {
+    exerciseId: string;
+    exerciseName: string;
+    sets: SetData[];
+  }[];
   totalReps: number;
-  estimatedCalories: number;
-  challengePoints: number;
-  exercisesCompleted: number;
-  exercises: SessionExercise[];
+  totalVolumeKg: number;
   notes?: string;
 }
 
-export type FitnessGoal = 'muscle_building' | 'maintenance' | 'weight_management' | 'endurance';
-
-export type CookingMethod = 
-  | 'grilled' 
-  | 'baked' 
-  | 'boiled_steamed' 
-  | 'pan_fried' 
-  | 'deep_fried' 
-  | 'raw' 
-  | 'roasted' 
-  | 'air_fried';
-
-export interface USDAFoodMatch {
-  fdcId: number;
-  description: string;
-  dataType?: string;
-  brandName?: string;
-  caloriesPer100g: number;
-  proteinPer100g: number;
-  carbsPer100g: number;
-  fatPer100g: number;
-  servingSize?: number;
-  servingSizeUnit?: string;
-}
-
-export interface MealFoodItem {
-  id: string;
-  name: string;
-  portionGrams: number;
-  portionUncertaintyGrams: number;
-  cookingMethod: string;
-  visibleIngredients: string[];
-  calories: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-  isVerifiedUSDA: boolean;
-  usdaMatch?: USDAFoodMatch;
-}
-
-export interface MealNutritionAnalysis {
-  mealName: string;
-  totalCalories: number;
-  totalProtein: number;
-  totalCarbs: number;
-  totalFat: number;
-  uncertaintyRange: {
-    minCalories: number;
-    maxCalories: number;
-    minProtein: number;
-    maxProtein: number;
-    minCarbs: number;
-    maxCarbs: number;
-    minFat: number;
-    maxFat: number;
-  };
-  items: MealFoodItem[];
-  goalFeedback: {
-    goal: FitnessGoal;
-    summary: string;
-    highlights: string[];
-    recommendations: string[];
-    proteinTargetContributionPercent?: number;
-  };
-  verifiedStatus: 'fully_verified' | 'partially_verified' | 'unverified';
-}
-
-export interface FoodDiaryEntry {
-  id: string;
-  date: string; // ISO string
-  mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'post_workout';
-  name: string;
-  totalCalories: number;
-  totalProtein: number;
-  totalCarbs: number;
-  totalFat: number;
-  uncertaintyRange?: {
-    minCalories: number;
-    maxCalories: number;
-  };
-  items: MealFoodItem[];
-  fitnessGoal: FitnessGoal;
-  supportiveFeedback: string;
-  imageThumbnail?: string;
-  hasUsdaVerifiedItems: boolean;
-}
-
-export interface NutritionTargets {
-  dailyCalories: number;
-  dailyProteinGrams: number;
-  dailyCarbsGrams: number;
-  dailyFatGrams: number;
-}
-
-export interface Challenge3000Goal {
-  id: string;
-  title: string;
-  unit: string;
-  target: number; // 3000
-  current: number;
-  type: 'reps' | 'calories' | 'minutes' | 'volume';
-  description: string;
-  badge: string;
-  icon: string;
-}
-
-export interface UserProfile {
-  name: string;
+export interface PersonalRecord {
+  exerciseId: string;
+  exerciseName: string;
   weightKg: number;
-  unit: 'kg' | 'lbs';
+  reps: number;
+  achievedAt: number;
+}
+
+export interface UserStats {
+  totalWorkouts: number;
+  totalReps: number;
+  totalVolumeKg: number;
+  totalTimeMinutes: number;
   streakDays: number;
   lastWorkoutDate?: string;
-  monthlyGoal: number; // e.g. 3000 reps or calories
-  fitnessGoal?: FitnessGoal;
-  nutritionTargets?: NutritionTargets;
+  weightUnit: 'kg' | 'lbs';
+  soundEnabled: boolean;
+  unlockedBadges: string[];
+  accessibleMode: boolean; // Accessible & elderly non-equipment mode toggle
+  profile?: UserProfile;
 }
 
+export interface ChallengeMilestone {
+  reps: number;
+  title: string;
+  badge: string;
+  description: string;
+}

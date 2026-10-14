@@ -3,153 +3,180 @@ import {
   Dumbbell, 
   Flame, 
   Trophy, 
-  Play, 
-  Layers,
-  Home,
-  Bot,
-  SlidersHorizontal
+  History, 
+  BookOpen, 
+  Zap, 
+  Volume2, 
+  VolumeX, 
+  Play,
+  User,
+  Armchair
 } from 'lucide-react';
-import { ActiveWorkoutSession, UserProfile } from '../types';
-
-export type NavTab = 'dashboard' | 'routines' | 'challenge' | 'exercises' | 'history' | 'tools' | 'coach';
+import { UserStats } from '../types';
 
 interface NavbarProps {
-  currentTab: NavTab;
-  onSelectTab: (tab: NavTab) => void;
-  activeSession: ActiveWorkoutSession | null;
-  onOpenActiveSession: () => void;
-  onQuickStart: () => void;
-  profile: UserProfile;
+  currentTab: string;
+  onSelectTab: (tab: string) => void;
+  stats: UserStats;
+  onToggleSound: () => void;
+  onToggleUnit: () => void;
+  onStartQuickWorkout: () => void;
+  isWorkoutActive: boolean;
+  onOpenActiveWorkout: () => void;
+  onOpenBodyProfileModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentTab,
   onSelectTab,
-  activeSession,
-  onOpenActiveSession,
-  onQuickStart,
-  profile,
+  stats,
+  onToggleSound,
+  onToggleUnit,
+  onStartQuickWorkout,
+  isWorkoutActive,
+  onOpenActiveWorkout,
+  onOpenBodyProfileModal,
 }) => {
+  const profile = stats.profile;
+
   return (
-    <>
-      {/* Top Mobile/Tablet App Bar */}
-      <header className="sticky top-0 z-30 bg-[#06070a]/95 backdrop-blur-md border-b border-zinc-850/80 px-4 sm:px-6">
-        <div className="flex items-center justify-between h-14 max-w-5xl mx-auto">
-          {/* Logo / Brand - "PRO" badge removed */}
-          <div 
-            onClick={() => onSelectTab('dashboard')} 
-            className="flex items-center space-x-2.5 cursor-pointer group active:scale-95 transition-transform"
-          >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 p-[1.5px] shadow-md shadow-emerald-950/40">
-              <div className="w-full h-full bg-[#050608] rounded-[9px] flex items-center justify-center">
-                <Dumbbell className="w-4 h-4 text-emerald-400" />
-              </div>
-            </div>
-            <span className="font-display tracking-wider text-2xl text-white font-extrabold uppercase">
-              3000
+    <header className="sticky top-0 z-30 bg-white border-b-2 border-zinc-200 shrink-0">
+      <div className="px-3 sm:px-4 h-14 flex items-center justify-between">
+        
+        {/* Brand & Somatotype Chip */}
+        <div 
+          className="flex items-center space-x-2 cursor-pointer select-none active:opacity-80" 
+          onClick={() => onSelectTab('dashboard')}
+        >
+          <div className="w-8 h-8 rounded-xl bg-pink-600 flex items-center justify-center shadow-xs">
+            <Zap className="w-4 h-4 text-white stroke-[3]" />
+          </div>
+          <div className="flex items-center space-x-1.5">
+            <span className="font-black tracking-tight text-base text-zinc-900">3000</span>
+            <span className="font-black text-white text-[10px] tracking-wider uppercase bg-emerald-600 px-1.5 py-0.5 rounded">
+              WORKOUT
             </span>
-          </div>
-
-          {/* Right Header Controls - Start button removed */}
-          <div className="flex items-center space-x-2">
-            {/* Tools Quick Link */}
             <button
-              onClick={() => onSelectTab('tools')}
-              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg border text-xs font-semibold transition-all active:scale-95 ${
-                currentTab === 'tools' || currentTab === 'history' || currentTab === 'exercises'
-                  ? 'bg-zinc-800 border-zinc-700 text-emerald-400'
-                  : 'bg-[#0b0c12] border-zinc-800 text-zinc-400 hover:text-white'
-              }`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenBodyProfileModal();
+              }}
+              className="font-bold text-pink-700 text-[9px] tracking-wider uppercase bg-pink-100 hover:bg-pink-200 px-1.5 py-0.5 rounded border border-pink-300 transition-colors"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>Tools</span>
+              {profile?.bodyType ? profile.bodyType.slice(0, 4).toUpperCase() : 'CALIB'}
             </button>
-
-            {/* Streak Counter */}
-            <div 
-              onClick={() => onSelectTab('challenge')}
-              title={`${profile.streakDays} day workout streak`}
-              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-amber-950/30 border border-amber-900/40 text-amber-400 text-xs font-semibold cursor-pointer active:scale-95 transition-transform"
-            >
-              <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" />
-              <span>{profile.streakDays}d</span>
-            </div>
           </div>
         </div>
-      </header>
 
-      {/* Bottom Thumb-Zone Navigation Dock with Perfectly Centered Start Button */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#06070a]/95 backdrop-blur-xl border-t border-zinc-850 pb-[env(safe-area-inset-bottom)]">
-        <div className="max-w-md sm:max-w-xl mx-auto px-3 flex items-center justify-between h-16">
-          {/* Left Wing (2 equal items: Home & Routines) */}
-          <div className="flex-1 flex items-center justify-around">
-            {/* Home */}
+        {/* Action Controls Header */}
+        <div className="flex items-center space-x-1.5">
+          {/* Active Workout Pulsing Pill */}
+          {isWorkoutActive ? (
             <button
-              onClick={() => onSelectTab('dashboard')}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
-                currentTab === 'dashboard' ? 'text-emerald-400 font-bold' : 'text-zinc-500 hover:text-zinc-300'
-              }`}
+              onClick={onOpenActiveWorkout}
+              className="relative flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs px-2.5 py-1.5 rounded-xl shadow-xs transition-transform active:scale-95"
             >
-              <Home className="w-5 h-5" />
-              <span className="text-[10px] mt-1 font-medium tracking-tight whitespace-nowrap select-none">Home</span>
+              <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+              <span>Resume</span>
             </button>
-
-            {/* Routines */}
+          ) : (
             <button
-              onClick={() => onSelectTab('routines')}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
-                currentTab === 'routines' ? 'text-emerald-400 font-bold' : 'text-zinc-500 hover:text-zinc-300'
-              }`}
+              onClick={onStartQuickWorkout}
+              className="flex items-center space-x-1 bg-pink-600 hover:bg-pink-700 text-white font-black text-xs px-2.5 py-1.5 rounded-xl shadow-xs transition-transform active:scale-95"
             >
-              <Layers className="w-5 h-5" />
-              <span className="text-[10px] mt-1 font-medium tracking-tight whitespace-nowrap select-none">Routines</span>
+              <Play className="w-3.5 h-3.5 fill-white" />
+              <span>Start</span>
             </button>
-          </div>
+          )}
 
-          {/* EXACT DEAD CENTER: Primary Workout Action Button */}
-          <div className="flex-shrink-0 px-2 -mt-5 flex flex-col items-center justify-center">
+          {/* Sound Toggle */}
+          <button
+            onClick={onToggleSound}
+            aria-label={stats.soundEnabled ? 'Mute' : 'Unmute'}
+            className="w-8 h-8 rounded-xl text-zinc-600 hover:bg-zinc-100 flex items-center justify-center border border-zinc-200 active:bg-zinc-200"
+          >
+            {stats.soundEnabled ? <Volume2 className="w-4 h-4 text-emerald-600" /> : <VolumeX className="w-4 h-4 text-zinc-400" />}
+          </button>
+
+          {/* KG / LBS Unit Toggle */}
+          <button
+            onClick={onToggleUnit}
+            aria-label="Toggle weight unit"
+            className="px-2 py-1 text-[11px] font-mono font-black bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 text-zinc-800 rounded-lg active:scale-95 transition-transform"
+          >
+            {stats.weightUnit.toUpperCase()}
+          </button>
+
+          {/* Profile Calibration Button */}
+          <button
+            onClick={onOpenBodyProfileModal}
+            aria-label="Open body profile"
+            className="w-8 h-8 rounded-xl bg-pink-50 border border-pink-200 text-pink-700 hover:bg-pink-100 flex items-center justify-center active:scale-95"
+          >
+            <User className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+interface MobileBottomNavProps {
+  currentTab: string;
+  onSelectTab: (tab: string) => void;
+  stats: UserStats;
+}
+
+export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
+  currentTab,
+  onSelectTab,
+  stats,
+}) => {
+  const percentTo3000 = Math.min(100, Math.round((stats.totalReps / 3000) * 100));
+
+  const navItems = [
+    { id: 'dashboard', label: 'Today', icon: Zap, activeColor: 'text-pink-600 bg-pink-50' },
+    { id: 'routines', label: 'Routines', icon: Dumbbell, activeColor: 'text-emerald-700 bg-emerald-50' },
+    { id: 'exercises', label: 'Visuals', icon: BookOpen, activeColor: 'text-pink-600 bg-pink-50' },
+    { id: 'challenge', label: '3000', icon: Trophy, activeColor: 'text-emerald-700 bg-emerald-50', badge: `${percentTo3000}%` },
+    { id: 'history', label: 'Progress', icon: History, activeColor: 'text-pink-600 bg-pink-50' },
+  ];
+
+  return (
+    <nav className="sticky bottom-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-zinc-200 px-2 pt-1 pb-safe shadow-lg select-none">
+      <div className="flex items-center justify-around max-w-md mx-auto">
+        {navItems.map((item) => {
+          const isActive = currentTab === item.id;
+          const Icon = item.icon;
+
+          return (
             <button
-              onClick={activeSession ? onOpenActiveSession : onQuickStart}
-              className={`w-14 h-14 rounded-2xl flex flex-col items-center justify-center shadow-2xl transition-all transform active:scale-90 ${
-                activeSession 
-                  ? 'bg-gradient-to-tr from-emerald-500 to-teal-400 text-black shadow-emerald-500/40 scale-105' 
-                  : 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-950/70 hover:scale-105'
-              }`}
-              title={activeSession ? 'Open active workout' : 'Start workout'}
+              key={item.id}
+              onClick={() => onSelectTab(item.id)}
+              className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all relative ${
+                isActive ? item.activeColor : 'text-zinc-500 hover:text-zinc-900'
+              } active:scale-90`}
             >
-              <Play className="w-6 h-6 fill-black translate-x-0.5" />
-              <span className="text-[9px] font-extrabold uppercase tracking-tight -mt-0.5 whitespace-nowrap select-none">
-                {activeSession ? 'ACTIVE' : 'START'}
+              <div className="relative">
+                <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-[1.8]'}`} />
+                {item.badge && (
+                  <span className={`absolute -top-1.5 -right-3 text-[9px] font-mono font-black px-1 rounded-full ${
+                    isActive ? 'bg-emerald-600 text-white' : 'bg-pink-100 text-pink-700'
+                  }`}>
+                    {item.badge}
+                  </span>
+                )}
+              </div>
+              <span className={`text-[10px] mt-0.5 ${isActive ? 'font-black' : 'font-semibold'}`}>
+                {item.label}
               </span>
+              {isActive && (
+                <span className="w-1.5 h-1.5 rounded-full bg-pink-600 absolute -bottom-0.5" />
+              )}
             </button>
-          </div>
-
-          {/* Right Wing (2 equal items: AI Coach & 3000 Club) */}
-          <div className="flex-1 flex items-center justify-around">
-            {/* AI Coach */}
-            <button
-              onClick={() => onSelectTab('coach')}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
-                currentTab === 'coach' ? 'text-emerald-400 font-bold' : 'text-zinc-500 hover:text-zinc-300'
-              }`}
-            >
-              <Bot className="w-5 h-5" />
-              <span className="text-[10px] mt-1 font-medium tracking-tight whitespace-nowrap select-none">AI Coach</span>
-            </button>
-
-            {/* 3000 Challenge */}
-            <button
-              onClick={() => onSelectTab('challenge')}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
-                currentTab === 'challenge' ? 'text-emerald-400 font-bold' : 'text-zinc-500 hover:text-zinc-300'
-              }`}
-            >
-              <Trophy className="w-5 h-5" />
-              <span className="text-[10px] mt-1 font-medium tracking-tight whitespace-nowrap select-none">3000 Club</span>
-            </button>
-          </div>
-        </div>
-      </nav>
-    </>
+          );
+        })}
+      </div>
+    </nav>
   );
 };
